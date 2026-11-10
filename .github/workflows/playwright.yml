@@ -32,8 +32,9 @@ jobs:
 
     - name: Set SQLite for CI
       run: |
+        touch database/database.sqlite
         sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/g' .env
-        sed -i 's/DB_DATABASE=nalarinAI/DB_DATABASE=:memory:/g' .env
+        sed -i '/DB_DATABASE=/d' .env
         sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/g' .env
         sed -i 's/CACHE_STORE=database/CACHE_STORE=file/g' .env
         sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/g' .env
