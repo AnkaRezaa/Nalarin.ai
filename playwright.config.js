@@ -27,10 +27,11 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'Google Chrome',
+      name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'],
-        channel: 'chrome', // Menggunakan Google Chrome bawaan laptop (0 MB download!)
+        // Di lokal gunakan Google Chrome laptop (0 MB download), di CI gunakan Chromium standar
+        ...(process.env.CI ? {} : { channel: 'chrome' }),
       },
     },
   ],

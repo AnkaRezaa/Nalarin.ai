@@ -44,8 +44,10 @@ jobs:
     - name: Generate App Key
       run: php artisan key:generate
 
-    - name: Run Migrations
-      run: php artisan migrate --force
+    - name: Run Migrations and Seeders
+      run: |
+        php artisan migrate --force
+        php artisan db:seed --force
 
     - name: Install NPM Dependencies
       run: npm ci
